@@ -35,3 +35,48 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.btn-0 {
+  grid-column: 1 / 3;
+  grid-row: 7;
+}
+
+.btn-1 {
+  grid-area: 6 / 1 / 7 / 2;
+}
+
+.btn-2 {
+  grid-area: 6 / 2 / 7 / 3;
+}
+
+.btn-3 {
+  grid-area: 6 / 3 / 7 / 4;
+}
+
+.btn-4 {
+  grid-area: 5 / 1 / 6 / 2;
+}
+
+.btn-5 {
+  grid-area: 5 / 2 / 6 / 3;
+}
+
+.btn-6 {
+  grid-area: 5 / 3 / 6 / 4;
+}
+
+.btn-7 {
+  grid-area: 4 / 1 / 5 / 2;
+}
+
+.btn-8 {
+  grid-area: 4 / 2 / 5 / 3;
+}
+
+.btn-9 {
+  grid-area: 4 / 3 / 5 / 4;
+}
+
+.btn-dot {
+  grid-area: 7 / 3 / 8 / 4;
+}
