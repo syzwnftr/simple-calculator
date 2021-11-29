@@ -36,6 +36,8 @@ main {
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
+  word-wrap: break-word;
+  word-break: break-all;
   font-weight: 500;
   padding: 1rem;
   border-bottom: 2px outset rgba(88, 88, 88, 0.5);
