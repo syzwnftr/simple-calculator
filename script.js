@@ -16,23 +16,63 @@ class Calculator {
       if(number === '.' && this.currentOperand.includes('.')) {
          return;
       }
-      this.currentOperand = this.currentOperand.toString() + number.toString();
 
+      this.currentOperand = this.currentOperand.toString() + number.toString();
    }
 
    chooseOperation(operation) {
+      if(this.currentOperand === '') {
+         return;
+      }
+
+      if(this.previousOperand != '') {
+         this.compute();
+      }
+
       this.operation = operation;
       this.previousOperand = this.currentOperand;
       this.currentOperand = '';
    }
 
    compute() {
+      let result;
+      const previousNumber = parseFloat(this.previousOperand);
+      const currentNumber = parseFloat(this.currentOperand);
+
+      if(isNaN(previousNumber) || isNaN(currentNumber)) {
+         return;
+      }
+
+      switch (this.operation) {
+         case '+': 
+            result = previousNumber + currentNumber;
+            break;
+         case '-': 
+            result = previousNumber - currentNumber;
+            break;
+         case 'x': 
+            result = previousNumber * currentNumber;
+            break;
+         case '/': 
+            result = previousNumber / currentNumber;
+            break;
+         default:
+            return;
+      }
+
+      this.currentOperand = result;
+      this.previousOperand = '';
+      this.operation = undefined;
 
    }
 
    updateDisplay() {
       this.currentOperandText.innerText = this.currentOperand;
-      this.previousOperandText.innerText = this.previousOperand;
+      if(this.operation != null) {
+         this.previousOperandText.innerText = `${this.previousOperand} ${this.operation}`;   
+      } else  {
+         this.previousOperandText.innerText = '';
+      }
    }
 }
 
@@ -58,4 +98,14 @@ operationBtn.forEach(button => {
       calculator.chooseOperation(button.innerText);
       calculator.updateDisplay();
    });
+});
+
+equalBtn.addEventListener('click', () =>   {
+   calculator.compute();
+   calculator.updateDisplay();
+});
+
+clearBtn.addEventListener('click', () =>   {
+   calculator.clear();
+   calculator.updateDisplay();
 });
