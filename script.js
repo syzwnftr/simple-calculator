@@ -21,7 +21,9 @@ class Calculator {
    }
 
    chooseOperation(operation) {
-
+      this.operation = operation;
+      this.previousOperand = this.currentOperand;
+      this.currentOperand = '';
    }
 
    compute() {
@@ -30,6 +32,7 @@ class Calculator {
 
    updateDisplay() {
       this.currentOperandText.innerText = this.currentOperand;
+      this.previousOperandText.innerText = this.previousOperand;
    }
 }
 
@@ -48,4 +51,11 @@ numberBtn.forEach(button => {
       calculator.appendNumber(button.innerText);
       calculator.updateDisplay();
    });
-})
+});
+
+operationBtn.forEach(button => {
+   button.addEventListener('click', () => {
+      calculator.chooseOperation(button.innerText);
+      calculator.updateDisplay();
+   });
+});
