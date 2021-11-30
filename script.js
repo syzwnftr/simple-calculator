@@ -34,6 +34,13 @@ class Calculator {
       this.currentOperand = '';
    }
 
+   percent() {
+      if(this,this.previousOperand === '') {
+         return;
+      }
+      this.currentOperand  = parseFloat((this.currentOperand / 100) * this.previousOperand);
+   }
+
    compute() {
       let result;
       const previousNumber = parseFloat(this.previousOperand);
@@ -63,7 +70,6 @@ class Calculator {
       this.currentOperand = result;
       this.previousOperand = '';
       this.operation = undefined;
-
    }
 
    updateDisplay() {
@@ -83,6 +89,7 @@ const equalBtn = document.querySelector('.btn-equal');
 const clearBtn = document.querySelector('.btn-clear');
 const currentOperandText = document.querySelector('.current-operand');
 const previousOperandText = document.querySelector('.previous-operand');
+const percentBtn = document.querySelector('.btn-percent');
 
 const calculator = new Calculator(previousOperandText, currentOperandText);
 
@@ -98,6 +105,11 @@ operationBtn.forEach(button => {
       calculator.chooseOperation(button.innerText);
       calculator.updateDisplay();
    });
+});
+
+percentBtn.addEventListener('click', () => {
+   calculator.percent();
+   calculator.updateDisplay();
 });
 
 equalBtn.addEventListener('click', () =>   {
