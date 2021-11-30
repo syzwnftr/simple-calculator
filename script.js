@@ -12,6 +12,10 @@ class Calculator {
 
    }
 
+   delete() {
+      this.currentOperand = this.currentOperand.toString().slice(0, -1);
+   }
+
    appendNumber(number) {
       if(number === '.' && this.currentOperand.includes('.')) {
          return;
@@ -35,7 +39,7 @@ class Calculator {
    }
 
    percent() {
-      if(this,this.previousOperand === '') {
+      if(this.previousOperand === '') {
          return;
       }
       this.currentOperand  = parseFloat((this.currentOperand / 100) * this.previousOperand);
@@ -90,6 +94,7 @@ const clearBtn = document.querySelector('.btn-clear');
 const currentOperandText = document.querySelector('.current-operand');
 const previousOperandText = document.querySelector('.previous-operand');
 const percentBtn = document.querySelector('.btn-percent');
+const deleteBtn = document.querySelector('.btn-delete');
 
 const calculator = new Calculator(previousOperandText, currentOperandText);
 
@@ -119,5 +124,10 @@ equalBtn.addEventListener('click', () =>   {
 
 clearBtn.addEventListener('click', () =>   {
    calculator.clear();
+   calculator.updateDisplay();
+});
+
+deleteBtn.addEventListener('click', () => {
+   calculator.delete();
    calculator.updateDisplay();
 });
