@@ -9,7 +9,7 @@ class Calculator {
       this.currentOperand = '';
       this.previousOperand = '';
       this.operation = undefined;
-
+      this.expression = '';
    }
 
    delete() {
@@ -71,19 +71,19 @@ class Calculator {
             return;
       }
 
-      this.result = `${this.previousOperand} ${this.operation} ${this.currentOperand} = `;
+      this.expression = `${this.previousOperand} ${this.operation} ${this.currentOperand} = `;
       this.currentOperand = result;
-      console.log(this.result);
+      console.log(this.expression);
       this.previousOperand = '';
       this.operation = undefined;
    }
 
    updateDisplay() {
       this.currentOperandText.innerText = this.currentOperand;
-      if(this.operation != null && this.result === undefined) {
+      if(this.operation != null) {
          this.previousOperandText.innerText = `${this.previousOperand} ${this.operation}`;   
-      } else if (this.operation != null || this.result !== undefined) {  
-         this.previousOperandText.innerText = this.result;      
+      } else if (this.operation != null || this.expression !== undefined) {  
+         this.previousOperandText.innerText = this.expression;      
       } else {
          this.previousOperandText.innerText = '';
       }
