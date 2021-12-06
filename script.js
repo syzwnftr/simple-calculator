@@ -64,7 +64,7 @@ class Calculator {
          case 'x': 
             result = previousNumber * currentNumber;
             break;
-         case '/': 
+         case '÷': 
             result = previousNumber / currentNumber;
             break;
          default:
