@@ -71,21 +71,24 @@ class Calculator {
             return;
       }
 
+      this.result = `${this.previousOperand} ${this.operation} ${this.currentOperand} = `;
       this.currentOperand = result;
+      console.log(this.result);
       this.previousOperand = '';
       this.operation = undefined;
    }
 
    updateDisplay() {
       this.currentOperandText.innerText = this.currentOperand;
-      if(this.operation != null) {
+      if(this.operation != null && this.result === undefined) {
          this.previousOperandText.innerText = `${this.previousOperand} ${this.operation}`;   
-      } else  {
+      } else if (this.operation != null || this.result !== undefined) {  
+         this.previousOperandText.innerText = this.result;      
+      } else {
          this.previousOperandText.innerText = '';
       }
    }
 }
-
 
 const numberBtn = document.querySelectorAll('.btn-num');
 const operationBtn = document.querySelectorAll('.btn-operation');
